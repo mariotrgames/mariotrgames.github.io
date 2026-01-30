@@ -3,86 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mario TR Games | İngilizce Kelime Öğrenme Uygulaması</title>
-    <meta name="description" content="3000'den fazla İngilizce kelimeyi oyun oynayarak öğrenin. Mario TR Games uygulamasını hemen indirin ve dil öğrenmeye başlayın.">
+    <title>Mario TR Games | İngilizceyi Oyunla Fethedin</title>
+    <meta name="description" content="3000 kelimelik dev kütüphane, eğlenceli eşleştirme motoru. Mario TR Games ile İngilizce öğrenmek artık bir oyun!">
     
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3471989378717982"
-         crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3471989378717982" crossorigin="anonymous"></script>
 
     <style>
-        :root { --primary: #22c55e; --dark: #0f172a; --light: #f8fafc; --accent: #1e293b; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.8; color: var(--dark); background: var(--light); margin: 0; padding: 0; }
-        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        header { text-align: center; padding: 80px 0; background: white; border-bottom: 1px solid #e2e8f0; margin-bottom: 40px; }
-        h1 { color: var(--dark); font-size: 2.8rem; margin-bottom: 10px; }
-        .hero { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); margin-bottom: 40px; border: 1px solid #f1f5f9; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 40px 0; }
-        .card { background: white; padding: 25px; border-radius: 12px; border-top: 5px solid var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .ad-space { background: #f1f5f9; border: 1px solid #cbd5e0; padding: 15px; text-align: center; margin: 20px 0; border-radius: 8px; font-size: 0.8rem; color: #94a3b8; }
-        footer { text-align: center; padding: 60px; margin-top: 60px; background: var(--accent); color: white; }
-        footer a { color: #38bdf8; text-decoration: none; margin: 0 10px; }
-        .btn-download { display: inline-block; background: var(--primary); color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2rem; transition: transform 0.2s; box-shadow: 0 4px 14px 0 rgba(34, 197, 94, 0.39); }
-        .btn-download:hover { transform: scale(1.05); background: #16a34a; }
-        .play-badge { margin-top: 20px; width: 200px; }
+        :root {
+            --primary: #4f46e5;
+            --secondary: #10b981;
+            --dark: #0f172a;
+            --text: #334155;
+            --bg: #f8fafc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Arka Plan Deseni */
+        .bg-pattern {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* Navbar */
+        nav { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--dark); letter-spacing: -1px; }
+        .logo span { color: var(--primary); }
+
+        /* Hero Section */
+        .hero { text-align: center; padding: 100px 0 60px; animation: fadeIn 1s ease-out; }
+        h1 { font-size: 3.5rem; color: var(--dark); line-height: 1.1; margin-bottom: 20px; letter-spacing: -2px; }
+        .hero p { font-size: 1.25rem; color: #64748b; max-width: 600px; margin: 0 auto 30px; }
+
+        .btn-main {
+            display: inline-flex; align-items: center;
+            background: var(--primary); color: white;
+            padding: 16px 40px; border-radius: 99px;
+            text-decoration: none; font-weight: 600; font-size: 1.1rem;
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2);
+            transition: all 0.3s ease;
+        }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 25px 30px -5px rgba(79, 70, 229, 0.3); }
+
+        /* Özellikler */
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px; }
+        .feature-card {
+            background: white; padding: 40px; border-radius: 24px;
+            border: 1px solid #e2e8f0; transition: all 0.3s ease;
+        }
+        .feature-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .feature-card h3 { margin-bottom: 15px; color: var(--dark); }
+
+        /* İstatistikler */
+        .stats { display: flex; justify-content: center; gap: 50px; margin: 60px 0; color: var(--primary); font-weight: 700; }
+        .stat-item span { display: block; font-size: 2rem; color: var(--dark); }
+
+        /* AdSense Area */
+        .ad-placeholder {
+            margin: 40px 0; padding: 20px; background: #fff;
+            border: 1px dashed #cbd5e0; border-radius: 12px;
+            text-align: center; font-size: 0.8rem; color: #94a3b8;
+        }
+
+        /* Footer */
+        footer { background: var(--dark); color: white; padding: 80px 0 40px; margin-top: 100px; border-radius: 40px 40px 0 0; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        footer a { color: #94a3b8; text-decoration: none; display: block; margin-bottom: 10px; }
+        footer a:hover { color: white; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .stats { flex-direction: column; gap: 20px; }
+        }
     </style>
 </head>
 <body>
-
-    <header>
-        <div class="container">
-            <h1>Mario TR Games</h1>
-            <p>Kelime Eşleştirme Oyunu ile İngilizce Artık Çok Kolay!</p>
-            <br>
-            <a href="https://play.google.com/store/apps/details?id=com.MarioTrGame.ingilizcekelimeogrenme" target="_blank" class="btn-download">HEMEN İNDİR (Google Play)</a>
-        </div>
-    </header>
+    <div class="bg-pattern"></div>
 
     <div class="container">
-        
+        <nav>
+            <div class="logo">MARIO<span>TR</span></div>
+            <a href="mailto:mustfgncc@gmail.com" style="text-decoration:none; color:var(--text); font-weight:600;">Destek</a>
+        </nav>
+
         <section class="hero">
-            <h2>Uygulama Hakkında</h2>
-            <p><strong>Mario TR Games</strong>, dil öğrenme sürecini sıkıcı bir görev olmaktan çıkarıp bir eğlenceye dönüştürüyor. Google Play üzerinden indirebileceğiniz uygulamamızda, en çok kullanılan 3000 kelimeyi interaktif eşleştirme oyunları ile öğrenebilirsiniz.</p>
-        </section>
-
-        <div class="ad-space">İlgili Bağlantılar</div>
-
-        <div class="grid">
-            <div class="card">
-                <h3>3000+ Kelime</h3>
-                <p>Başlangıçtan ileri seviyeye kadar özenle seçilmiş devasa kelime kütüphanesi.</p>
-            </div>
-            <div class="card">
-                <h3>Hızlı Tekrar</h3>
-                <p>Hatalı bildiğiniz kelimeleri uygulama otomatik olarak karşınıza çıkarır ve kalıcı öğrenme sağlar.</p>
-            </div>
-            <div class="card">
-                <h3>Ücretsiz Kullanım</h3>
-                <p>Tüm eğitim modları tamamen ücretsizdir. Hemen indirip deneyebilirsiniz.</p>
-            </div>
-        </div>
-
-        <section class="hero" style="text-align: center; background: #fdfdfd;">
-            <h2>Hemen Öğrenmeye Başlayın</h2>
-            <p>Android cihazlarınız için özel olarak optimize edilmiş Mario TR Games'i Google Play Store'dan ücretsiz indirin.</p>
-            <a href="https://play.google.com/store/apps/details?id=com.MarioTrGame.ingilizcekelimeogrenme" target="_blank">
-                <img class="play-badge" src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play'den indir">
+            <h1>Dil Öğrenmek Artık <br> Bir <span>Eğlence.</span></h1>
+            <p>Mario TR Games ile 3000'den fazla kelimeyi sıkılmadan, oyun oynayarak hafızanıza kazıyın. Zamanla yarışın, skorunuzu yükseltin.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.MarioTrGame.ingilizcekelimeogrenme" target="_blank" class="btn-main">
+                Hemen Ücretsiz İndir
             </a>
+            
+            <div class="stats">
+                <div class="stat-item"><span>3000+</span> Kelime</div>
+                <div class="stat-item"><span>%100</span> Ücretsiz</div>
+                <div class="stat-item"><span>Android</span> Uyumlu</div>
+            </div>
         </section>
 
+        <div class="ad-placeholder">Sponsorlu İçerik</div>
+
+        <section class="features">
+            <div class="feature-card">
+                <h3>Akıllı Tekrar</h3>
+                <p>Uygulama, zorlandığınız kelimeleri analiz eder ve onları daha sık karşınıza çıkararak kalıcı öğrenme sağlar.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Günlük Hedefler</h3>
+                <p>Her gün sadece 10 dakika ayırarak ayda 300 yeni kelimeyi kelime dağarcığınıza ekleyebilirsiniz.</p>
+            </div>
+            <div class="feature-card" style="background: var(--primary); color: white;">
+                <h3 style="color: white;">Sıralamaya Gir</h3>
+                <p>Diğer kullanıcılarla yarışın, en yüksek skoru yapın ve kelime bilginizi tüm dünyaya kanıtlayın.</p>
+            </div>
+        </section>
     </div>
 
     <footer>
         <div class="container">
-            <p>Mario TR Games - İngilizce Öğrenme Platformu</p>
-            <p>
-                <a href="privacy.html">Gizlilik Politikası</a> | 
-                <a href="mailto:mustfgncc@gmail.com">İletişim: mustfgncc@gmail.com</a>
-            </p>
-            <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 20px;">
-                &copy; 2026 Mario TR Games. Google Play ve Google Play logosu Google LLC'nin ticari markalarıdır.
+            <div class="footer-grid">
+                <div>
+                    <h4>Mario TR Games</h4>
+                    <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">Eğitimde oyunlaştırma teknolojileri kullanarak dil öğrenmeyi kolaylaştırıyoruz.</p>
+                </div>
+                <div>
+                    <h4>Hızlı Menü</h4>
+                    <a href="#">Ana Sayfa</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.MarioTrGame.ingilizcekelimeogrenme">Google Play</a>
+                </div>
+                <div>
+                    <h4>Yasal</h4>
+                    <a href="privacy.html">Gizlilik Politikası</a>
+                    <a href="mailto:mustfgncc@gmail.com">İletişim</a>
+                </div>
+            </div>
+            <p style="text-align: center; border-top: 1px solid #1e293b; padding-top: 30px; font-size: 0.8rem; color: #64748b;">
+                © 2026 Mario TR Games. Google Play logosu Google LLC ticari markasıdır. Bu site AdSense ile korunmaktadır.
             </p>
         </div>
     </footer>
-
 </body>
 </html>
