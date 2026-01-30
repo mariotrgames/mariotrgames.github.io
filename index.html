@@ -159,34 +159,55 @@
     </footer>
 
     <script>
-        async function fetchRepos() {
-            try {
-                const response = await fetch('https://api.github.com/users/mariotrgames/repos?sort=updated');
-                const repos = await response.json();
-                const container = document.getElementById('repo-list');
-                container.innerHTML = ''; // Yükleniyor yazısını sil
-
-                repos.forEach(repo => {
-                    // Sitenin kendi ana deposunu listede gizle (istersen gösterebilirsin)
-                    if(repo.name !== 'mariotrgames.github.io') {
-                        const card = `
-                            <div class="repo-card">
-                                <div>
-                                    <i class="fas fa-code-branch" style="color:var(--primary); margin-bottom:15px; font-size:1.5rem;"></i>
-                                    <h3>${repo.name}</h3>
-                                    <p>${repo.description || 'Bu proje için henüz bir açıklama girilmemiş.'}</p>
-                                </div>
-                                <a href="${repo.html_url}" target="_blank" class="repo-link">Depoyu Görüntüle</a>
-                            </div>
-                        `;
-                        container.innerHTML += card;
-                    }
-                });
-            } catch (error) {
-                document.getElementById('repo-list').innerHTML = '<p>Projeler şu an yüklenemedi.</p>';
+    async function fetchRepos() {
+        const container = document.getElementById('repo-list');
+        try {
+            // Kullanıcı adını küçük harfle teyit ederek çekiyoruz
+            const response = await fetch('https://api.github.com/users/mariotrgames/repos?sort=pushed');
+            
+            if (!response.ok) throw new Error('API Hatası');
+            
+            const repos = await response.json();
+            
+            if (repos.length === 0) {
+                container.innerHTML = '<p style="grid-column: 1/-1;">Henüz halka açık bir depo bulunamadı.</p>';
+                return;
             }
+
+            container.innerHTML = ''; // "Yükleniyor" yazısını temizle
+
+            repos.forEach(repo => {
+                // Ana site deposunu ve boş depoları filtrele (Opsiyonel)
+                if (repo.name.toLowerCase() !== 'mariotrgames.github.io') {
+                    const card = `
+                        <div class="repo-card" style="animation: fadeIn 0.5s ease forwards;">
+                            <div>
+                                <i class="fas fa-code-branch" style="color:var(--primary); margin-bottom:15px; font-size:1.5rem;"></i>
+                                <h3 style="text-transform: capitalize;">${repo.name.replace(/-/g, ' ')}</h3>
+                                <p>${repo.description || 'Bu proje için açıklama bekleniyor...'}</p>
+                            </div>
+                            <div style="margin-top:15px; font-size:0.8rem; color:#94a3b8; margin-bottom:10px;">
+                                <i class="fas fa-star"></i> ${repo.stargazers_count} | 
+                                <i class="fas fa-circle" style="color: #22c55e;"></i> ${repo.language || 'Kod'}
+                            </div>
+                            <a href="${repo.html_url}" target="_blank" class="repo-link">Depoyu Görüntüle</a>
+                        </div>
+                    `;
+                    container.innerHTML += card;
+                }
+            });
+        } catch (error) {
+            console.error('Hata:', error);
+            container.innerHTML = `
+                <div style="grid-column: 1/-1; text-align:center;">
+                    <p>Projeler şu an yüklenemedi. Doğrudan GitHub'dan inceleyebilirsiniz:</p>
+                    <a href="https://github.com/mariotrgames" target="_blank" class="btn-play" style="margin-top:15px;">GitHub Profiline Git</a>
+                </div>`;
         }
-        fetchRepos();
-    </script>
+    }
+
+    // Sayfa tamamen yüklendiğinde fonksiyonu çalıştır
+    window.onload = fetchRepos;
+</script>
 </body>
 </html>
